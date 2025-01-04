@@ -1,10 +1,8 @@
 {
-  "expo": {
-    "scheme": "acme",
-    "plugins": [
-      "expo-router"
-    ],
-    "name": "exam-fusion-mobile",
-    "slug": "exam-fusion-mobile"
-  }
+	"expo": {
+		"scheme": "acme",
+		"plugins": ["expo-router"],
+		"name": "exam-fusion-mobile",
+		"slug": "exam-fusion-mobile"
+	}
 }

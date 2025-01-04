@@ -1,13 +1,37 @@
-import { View, Text } from "react-native";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { Link } from "expo-router";
 import React from "react";
+import { fetchTests } from "../../api/fetchTests";
+import { useQuery } from "@tanstack/react-query";
+
+export interface TestData {
+	_id: string;
+	provider: string;
+	level: string;
+	title: string;
+	description: string;
+}
 
 const practice = () => {
+	const { data, isLoading, isError, error } = useQuery({
+		queryKey: ["tests"],
+		queryFn: fetchTests,
+	});
+
+	if (isLoading) return <ActivityIndicator />;
+	if (isError) return <Text>Error: {error?.message}</Text>;
+	if (!data) return <Text>There aren't any tests available</Text>;
+
 	return (
-		<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Link href="/practice/1">Test 1</Link>
-			<Link href="/practice/2">Test 2</Link>
-			<Link href="/practice/3">Test 3</Link>
+		<View style={{}}>
+			<FlatList
+				data={data}
+				renderItem={({ item }) => (
+					<View>
+						<Link href="/practice/1">{item.title}</Link>
+					</View>
+				)}
+			/>
 		</View>
 	);
 };
