@@ -6,7 +6,7 @@
 		"start": "expo start",
 		"android": "expo start --android",
 		"ios": "expo start --ios",
-		"web": "expo start --web",
+		"web": "expo start --web --port 8000",
 		"android:dev": "expo run:android",
 		"ios:dev": "expo run:ios"
 	},
