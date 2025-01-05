@@ -1,9 +1,8 @@
 import { View, Text } from "react-native";
-import React from "react";
 
 import { Stack, useLocalSearchParams } from "expo-router";
 
-const TestPage = () => {
+const Test = () => {
 	const { id } = useLocalSearchParams();
 	return (
 		<View>
@@ -13,4 +12,4 @@ const TestPage = () => {
 	);
 };
 
-export default TestPage;
+export default Test;

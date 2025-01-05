@@ -1,6 +1,5 @@
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { Link } from "expo-router";
-import React from "react";
 import { fetchTests } from "../../api/fetchTests";
 import { useQuery } from "@tanstack/react-query";
 

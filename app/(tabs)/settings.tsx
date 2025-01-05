@@ -1,5 +1,4 @@
-import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
 import { supabase } from "../../lib/supabase";
 

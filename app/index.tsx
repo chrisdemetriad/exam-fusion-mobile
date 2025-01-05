@@ -1,5 +1,4 @@
 import { View } from "react-native";
-import React from "react";
 import { Link, useRouter } from "expo-router";
 import Auth from "../components/auth";
 import { useAuthStore } from "../store/authStore";
