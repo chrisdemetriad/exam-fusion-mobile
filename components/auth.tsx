@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, StyleSheet, View, Text } from "react-native";
 import { supabase } from "../lib/supabase";
 import { Button, Input } from "@rneui/themed";
 import * as Linking from "expo-linking";
 import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as WebBrowser from "expo-web-browser";
+import { useRouter } from "expo-router";
+import { useAuthStore } from "../store/authStore";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -29,9 +31,27 @@ export default function Auth() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [user, setUser] = useState(null);
+	const router = useRouter();
 
 	const url = Linking.useURL();
 	if (url) createSessionFromUrl(url);
+
+	const { setSession } = useAuthStore();
+
+	useEffect(() => {
+		const { data: authListener } = supabase.auth.onAuthStateChange(
+			(_event, session) => {
+				setUser(session?.user || null);
+				setSession(session);
+				if (session?.user) router.replace("/home");
+			},
+		);
+
+		return () => {
+			authListener?.subscription?.unsubscribe();
+		};
+	}, []);
 
 	async function signInWithEmail() {
 		setLoading(true);
@@ -40,7 +60,11 @@ export default function Auth() {
 			password: password,
 		});
 
-		if (error) Alert.alert(error.message);
+		if (error) {
+			Alert.alert(error.message);
+		} else {
+			router.replace("/home");
+		}
 		setLoading(false);
 	}
 
@@ -54,51 +78,67 @@ export default function Auth() {
 			password,
 		});
 
-		if (error) Alert.alert(error.message);
-		if (!session) Alert.alert("Please confirm by clicking on the email link");
+		if (error) {
+			Alert.alert(error.message);
+		} else if (!session) {
+			Alert.alert("Please confirm by clicking on the email link");
+		} else {
+			router.replace("/home");
+		}
 		setLoading(false);
+	}
+
+	async function signOut() {
+		await supabase.auth.signOut();
+		setUser(null);
 	}
 
 	return (
 		<View style={styles.container}>
-			<View style={[styles.verticallySpaced, styles.mt20]}>
-				<Input
-					label="Email"
-					leftIcon={{ type: "font-awesome", name: "envelope" }}
-					onChangeText={(text) => setEmail(text)}
-					value={email}
-					placeholder="email@address.com"
-					autoCapitalize={"none"}
-				/>
-			</View>
-			<View style={styles.verticallySpaced}>
-				<Input
-					label="Password"
-					leftIcon={{ type: "font-awesome", name: "lock" }}
-					onChangeText={(text) => setPassword(text)}
-					value={password}
-					secureTextEntry={true}
-					placeholder="Password"
-					autoCapitalize={"none"}
-				/>
-			</View>
-			<View style={[styles.verticallySpaced, styles.mt20]}>
-				<Button
-					title="Sign in"
-					disabled={loading}
-					onPress={() => signInWithEmail()}
-				/>
-			</View>
-			<View style={styles.verticallySpaced}>
-				<Button
-					title="Sign up"
-					disabled={loading}
-					onPress={() => signUpWithEmail()}
-				/>
-			</View>
-			<View>
-				<Text>{url}</Text>
-			</View>
+			{user ? (
+				<View>
+					<Text>Welcome, {user.email}!</Text>
+					<Button title="Sign Out" onPress={signOut} />
+				</View>
+			) : (
+				<View>
+					<View style={[styles.verticallySpaced, styles.mt20]}>
+						<Input
+							label="Email"
+							leftIcon={{ type: "font-awesome", name: "envelope" }}
+							onChangeText={(text) => setEmail(text)}
+							value={email}
+							placeholder="email@address.com"
+							autoCapitalize={"none"}
+						/>
+					</View>
+					<View style={styles.verticallySpaced}>
+						<Input
+							label="Password"
+							leftIcon={{ type: "font-awesome", name: "lock" }}
+							onChangeText={(text) => setPassword(text)}
+							value={password}
+							secureTextEntry={true}
+							placeholder="Password"
+							autoCapitalize={"none"}
+						/>
+					</View>
+					<View style={[styles.verticallySpaced, styles.mt20]}>
+						<Button
+							title="Sign in"
+							disabled={loading}
+							onPress={() => signInWithEmail()}
+						/>
+					</View>
+					<View style={styles.verticallySpaced}>
+						<Button
+							title="Sign up"
+							disabled={loading}
+							onPress={() => signUpWithEmail()}
+						/>
+					</View>
+				</View>
+			)}
 		</View>
 	);
 }

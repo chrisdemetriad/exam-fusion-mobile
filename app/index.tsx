@@ -1,16 +1,33 @@
-import { View, Text } from "react-native";
-import React, { useState } from "react";
-import { Link } from "expo-router";
+import { View } from "react-native";
+import React from "react";
+import { Link, useRouter } from "expo-router";
 import Auth from "../components/auth";
-import type { Session } from "@supabase/supabase-js";
+import { useAuthStore } from "../store/authStore";
 
 const index = () => {
-	const [session, setSession] = useState<Session | null>(null);
+	const { session } = useAuthStore();
+	const router = useRouter();
+
+	const handleSkip = () => {
+		if (!session) {
+			alert("Please login first");
+			return;
+		}
+		router.push("/home");
+	};
+
 	return (
 		<View>
-			{session?.user && <Text>{session.user.id}</Text>}
 			<Auth />
-			<Link href="/home">Skip</Link>
+			<Link
+				href="/home"
+				onPress={(e) => {
+					e.preventDefault();
+					handleSkip();
+				}}
+			>
+				Skip
+			</Link>
 		</View>
 	);
 };
