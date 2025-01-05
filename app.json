@@ -1,8 +1,17 @@
 {
 	"expo": {
-		"scheme": "acme",
+		"scheme": "uk.demetriad",
 		"plugins": ["expo-router"],
 		"name": "exam-fusion-mobile",
-		"slug": "exam-fusion-mobile"
+		"slug": "exam-fusion-mobile",
+
+		"platforms": ["ios", "android", "web"],
+		"ios": {
+			"bundleIdentifier": "uk.demetriad.auth",
+			"associatedDomains": ["applinks:uk.demetriad"]
+		},
+		"android": {
+			"package": "uk.demetriad"
+		}
 	}
 }
