@@ -23,7 +23,7 @@ const practice = () => {
 	if (!data) return <Text>There aren't any tests available</Text>;
 
 	return (
-		<View style={{}}>
+		<View>
 			<FlatList
 				data={data}
 				renderItem={({ item }) => (

@@ -1,9 +1,9 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import React, { useEffect } from "react";
 import { Link, useRouter } from "expo-router";
-import { useAuthStore } from "../../../store/authStore";
+import { useAuthStore } from "../../store/authStore";
 
-const home = () => {
+const Home = () => {
 	const { session } = useAuthStore();
 	const router = useRouter();
 
@@ -17,9 +17,10 @@ const home = () => {
 
 	return (
 		<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-			<Link href="home/settings">Settings</Link>
+			<Text style={{ fontSize: 24, fontWeight: "bold" }}>Home</Text>
+			<Link href="/settings">Settings</Link>
 		</View>
 	);
 };
 
-export default home;
+export default Home;
