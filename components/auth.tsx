@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Alert, StyleSheet, View, Text } from "react-native";
-import { supabase } from "../lib/supabase";
+import { supabase } from "@lib/supabase";
 import { Button, Input } from "@rneui/themed";
 import * as Linking from "expo-linking";
 import * as QueryParams from "expo-auth-session/build/QueryParams";
 import * as WebBrowser from "expo-web-browser";
 import { useRouter } from "expo-router";
-import { useAuthStore } from "../store/authStore";
+import { useAuthStore } from "@store/authStore";
 
 WebBrowser.maybeCompleteAuthSession();
 
