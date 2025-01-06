@@ -2,19 +2,14 @@ import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { Link } from "expo-router";
 import { fetchTests } from "@lib/api/fetchTests";
 import { useQuery } from "@tanstack/react-query";
-
-export interface TestData {
-	_id: string;
-	provider: string;
-	level: string;
-	title: string;
-	description: string;
-}
+import { useAuthStore } from "@store/authStore";
 
 const practice = () => {
+	const { session } = useAuthStore();
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ["tests"],
 		queryFn: fetchTests,
+		enabled: !!session,
 	});
 
 	if (isLoading) return <ActivityIndicator />;
