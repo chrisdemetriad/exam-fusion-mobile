@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Link, useRouter } from "expo-router";
 import { useAuthStore } from "@store/authStore";
 
-const Home = () => {
+const home = () => {
 	const { session } = useAuthStore();
 	const router = useRouter();
 
@@ -23,4 +23,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default home;

@@ -2,7 +2,7 @@ import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
 import { supabase } from "@lib/supabase";
 
-const Settings = () => {
+const settings = () => {
 	const router = useRouter();
 
 	const handleLogout = async () => {
@@ -18,4 +18,4 @@ const Settings = () => {
 	);
 };
 
-export default Settings;
+export default settings;
