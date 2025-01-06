@@ -44,7 +44,7 @@ export default function Auth() {
 			(_event, session) => {
 				setUser(session?.user || null);
 				setSession(session);
-				if (session?.user) router.replace("/home");
+				if (session?.user) router.replace("/practice");
 			},
 		);
 
@@ -63,7 +63,7 @@ export default function Auth() {
 		if (error) {
 			Alert.alert(error.message);
 		} else {
-			router.replace("/home");
+			router.replace("/practice");
 		}
 		setLoading(false);
 	}
@@ -83,7 +83,7 @@ export default function Auth() {
 		} else if (!session) {
 			Alert.alert("Please confirm by clicking on the email link");
 		} else {
-			router.replace("/home");
+			router.replace("/practice");
 		}
 		setLoading(false);
 	}

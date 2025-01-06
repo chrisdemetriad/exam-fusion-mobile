@@ -12,14 +12,14 @@ const index = () => {
 			alert("Please login first");
 			return;
 		}
-		router.push("/home");
+		router.push("/practice");
 	};
 
 	return (
 		<View>
 			<Auth />
 			<Link
-				href="/home"
+				href="/practice"
 				onPress={(e) => {
 					e.preventDefault();
 					handleSkip();

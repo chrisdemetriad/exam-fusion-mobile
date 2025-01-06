@@ -4,6 +4,7 @@ import "react-native-url-polyfill/auto";
 import { useEffect } from "react";
 import { supabase } from "@lib/supabase";
 import { useAuthStore } from "@store/authStore";
+import { View } from "react-native";
 
 const StackLayout = () => {
 	const { setSession, setLoading } = useAuthStore();
@@ -28,9 +29,21 @@ const StackLayout = () => {
 
 	return (
 		<QueryClientProvider client={client}>
-			<Stack>
-				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-			</Stack>
+			<View
+				style={{
+					flex: 1,
+					backgroundColor: "#f0f0f0",
+				}}
+			>
+				<Stack
+					screenOptions={{
+						headerStyle: { backgroundColor: "#f0f0f0" },
+						contentStyle: { backgroundColor: "#f0f0f0" },
+					}}
+				>
+					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+				</Stack>
+			</View>
 		</QueryClientProvider>
 	);
 };
