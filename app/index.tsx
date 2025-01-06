@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Link, useRouter } from "expo-router";
-import Auth from "../components/auth";
-import { useAuthStore } from "../store/authStore";
+import Auth from "@components/auth";
+import { useAuthStore } from "@store/authStore";
 
 const index = () => {
 	const { session } = useAuthStore();

@@ -2,8 +2,8 @@ import { Stack } from "expo-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "react-native-url-polyfill/auto";
 import { useEffect } from "react";
-import { supabase } from "../lib/supabase";
-import { useAuthStore } from "../store/authStore";
+import { supabase } from "@lib/supabase";
+import { useAuthStore } from "@store/authStore";
 
 const StackLayout = () => {
 	const { setSession, setLoading } = useAuthStore();

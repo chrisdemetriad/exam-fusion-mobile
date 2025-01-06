@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { useEffect } from "react";
 import { Link, useRouter } from "expo-router";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "@store/authStore";
 
 const Home = () => {
 	const { session } = useAuthStore();
