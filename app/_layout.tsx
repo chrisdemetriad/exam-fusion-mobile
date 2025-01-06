@@ -42,6 +42,13 @@ const StackLayout = () => {
 					}}
 				>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+					<Stack.Screen
+						name="settings"
+						options={{
+							title: "Settings",
+							headerBackTitle: "Go back",
+						}}
+					/>
 				</Stack>
 			</View>
 		</QueryClientProvider>
