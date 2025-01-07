@@ -1,10 +1,10 @@
 {
 	"expo": {
 		"scheme": "uk.demetriad",
-		"plugins": ["expo-router"],
+		"plugins": ["expo-router", "expo-font"],
+		"assetBundlePatterns": ["**/*"],
 		"name": "exam-fusion-mobile",
 		"slug": "exam-fusion-mobile",
-
 		"platforms": ["ios", "android", "web"],
 		"ios": {
 			"bundleIdentifier": "uk.demetriad.auth",
@@ -12,6 +12,8 @@
 		},
 		"android": {
 			"package": "uk.demetriad"
-		}
+		},
+		"jsEngine": "hermes",
+		"newArchEnabled": true
 	}
 }
