@@ -42,7 +42,7 @@ const StackLayout = () => {
 					backgroundColor: "#f0f0f0",
 				}}
 			>
-				<ActivityIndicator size="large" color="#000" />
+				<ActivityIndicator size="large" color="blue" />
 			</View>
 		);
 	}

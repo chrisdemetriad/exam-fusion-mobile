@@ -12,7 +12,7 @@ const practice = () => {
 		enabled: !!session,
 	});
 
-	if (isLoading) return <ActivityIndicator />;
+	if (isLoading) return <ActivityIndicator size="large" color="blue" />;
 	if (isError) return <Text>Error: {error?.message}</Text>;
 	if (!data) return <Text>There aren't any tests available</Text>;
 

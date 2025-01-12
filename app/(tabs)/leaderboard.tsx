@@ -24,7 +24,7 @@ const Leaderboard = () => {
 		enabled: !!session,
 	});
 
-	if (isLoading) return <ActivityIndicator size="large" />;
+	if (isLoading) return <ActivityIndicator size="large" color="blue" />;
 	if (isError) return <Text>Error: {error?.message}</Text>;
 	if (!data || !Array.isArray(data[selectedCategory])) {
 		return <Text>No data available for this category</Text>;
