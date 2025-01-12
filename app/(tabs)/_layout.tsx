@@ -1,6 +1,6 @@
 import { router, Tabs } from "expo-router";
 import AuthGuard from "@components/AuthGuard";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Icon } from "@rneui/themed";
 import { View, TouchableOpacity } from "react-native";
 
 export default () => {
@@ -13,7 +13,6 @@ export default () => {
 						borderBottomWidth: 0,
 						elevation: 0,
 						shadowOpacity: 0,
-						// height: 60,
 					},
 					headerTitleAlign: "left",
 					headerTitleStyle: {
@@ -22,17 +21,16 @@ export default () => {
 					},
 					headerRight: () => (
 						<View style={{ flexDirection: "row", alignItems: "center" }}>
-							{/* <TouchableOpacity
-								onPress={() => router.push("/settings")}
-								style={{ marginRight: 15 }}
-							>
-								<Ionicons name="settings-outline" size={24} color="#333" />
-							</TouchableOpacity> */}
 							<TouchableOpacity
 								onPress={() => router.push("/settings")}
 								style={{ marginRight: 10 }}
 							>
-								<Ionicons name="person-outline" size={24} color="#333" />
+								<Icon
+									name="person-outline"
+									type="ionicon"
+									size={24}
+									color="#333"
+								/>
 							</TouchableOpacity>
 						</View>
 					),
@@ -53,7 +51,12 @@ export default () => {
 					options={{
 						title: "Practice",
 						tabBarIcon: ({ color }) => (
-							<Ionicons name="book-outline" size={20} color={color} />
+							<Icon
+								name="book-outline"
+								type="ionicon"
+								size={20}
+								color={color}
+							/>
 						),
 					}}
 				/>
@@ -62,7 +65,12 @@ export default () => {
 					options={{
 						title: "Progress",
 						tabBarIcon: ({ color }) => (
-							<Ionicons name="bar-chart-outline" size={20} color={color} />
+							<Icon
+								name="bar-chart-outline"
+								type="ionicon"
+								size={20}
+								color={color}
+							/>
 						),
 					}}
 				/>
@@ -71,7 +79,12 @@ export default () => {
 					options={{
 						title: "Leaderboard",
 						tabBarIcon: ({ color }) => (
-							<Ionicons name="trophy-outline" size={20} color={color} />
+							<Icon
+								name="trophy-outline"
+								type="ionicon"
+								size={20}
+								color={color}
+							/>
 						),
 					}}
 				/>
@@ -80,7 +93,12 @@ export default () => {
 					options={{
 						title: "Help",
 						tabBarIcon: ({ color }) => (
-							<Ionicons name="help-circle-outline" size={20} color={color} />
+							<Icon
+								name="help-circle-outline"
+								type="ionicon"
+								size={20}
+								color={color}
+							/>
 						),
 					}}
 				/>

@@ -1,12 +1,7 @@
-import { View } from "react-native";
-import Auth from "@components/auth";
+import SignIn from "@components/auth/SignIn";
 
 const index = () => {
-	return (
-		<View>
-			<Auth />
-		</View>
-	);
+	return <SignIn />;
 };
 
 export default index;
