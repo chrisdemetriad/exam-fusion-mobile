@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import {
-	View,
-	Text,
-	TextInput,
-	Pressable,
-	StyleSheet,
-	Alert,
-} from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { supabase } from "@lib/supabase";
+import ss from "styles/styles";
 
 export default function ForgotPassword() {
 	const [email, setEmail] = useState("");
@@ -28,27 +22,22 @@ export default function ForgotPassword() {
 	}
 
 	return (
-		<View style={styles.container}>
+		<View style={ss.container}>
 			{emailSent ? (
 				<View style={{ alignItems: "center" }}>
-					<Text style={styles.successText}>
+					<Text style={ss.successText}>
 						Check your email for password reset instructions
 					</Text>
 					<Pressable onPress={() => setEmailSent(false)}>
-						<Text style={styles.linkText}>Press here to try again</Text>
+						<Text style={ss.linkText}>Press here to try again</Text>
 					</Pressable>
 				</View>
 			) : (
 				<>
-					<View style={styles.inputContainer}>
-						<Icon
-							name="envelope"
-							size={20}
-							color="#888"
-							style={styles.inputIcon}
-						/>
+					<View style={ss.inputContainer}>
+						<Icon name="envelope" size={20} color="#888" style={ss.inputIcon} />
 						<TextInput
-							style={styles.input}
+							style={ss.input}
 							onChangeText={(text) => setEmail(text)}
 							value={email}
 							placeholder="email@address.com"
@@ -57,61 +46,14 @@ export default function ForgotPassword() {
 						/>
 					</View>
 					<Pressable
-						style={[styles.button, loading && styles.buttonDisabled]}
+						style={[ss.button, loading && ss.buttonDisabled]}
 						disabled={loading}
 						onPress={resetPassword}
 					>
-						<Text style={styles.buttonText}>Reset password</Text>
+						<Text style={ss.buttonText}>Reset password</Text>
 					</Pressable>
 				</>
 			)}
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		marginTop: 40,
-		padding: 12,
-	},
-	inputContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		borderWidth: 1,
-		borderColor: "#ccc",
-		borderRadius: 5,
-		padding: 10,
-		marginBottom: 20,
-	},
-	inputIcon: {
-		marginRight: 10,
-	},
-	input: {
-		flex: 1,
-		fontSize: 16,
-	},
-	button: {
-		backgroundColor: "blue",
-		padding: 15,
-		borderRadius: 5,
-		alignItems: "center",
-		marginBottom: 10,
-	},
-	buttonDisabled: {
-		backgroundColor: "#d3d3d3",
-	},
-	buttonText: {
-		color: "#fff",
-		fontSize: 16,
-		fontWeight: "bold",
-	},
-	successText: {
-		textAlign: "center",
-
-		marginBottom: 10,
-	},
-	linkText: {
-		color: "blue",
-		textDecorationLine: "underline",
-	},
-});

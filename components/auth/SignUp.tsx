@@ -10,6 +10,7 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useRouter } from "expo-router";
 import { supabase } from "@lib/supabase";
+import ss from "styles/styles";
 
 export default function SignUp() {
 	const [email, setEmail] = useState("");
@@ -38,28 +39,23 @@ export default function SignUp() {
 	}
 
 	return (
-		<View style={styles.container}>
+		<View style={ss.container}>
 			{emailSent ? (
 				<View style={{ alignItems: "center" }}>
-					<Text style={styles.successText}>
+					<Text style={ss.successText}>
 						Check your email to confirm your account
 					</Text>
 					<Pressable onPress={() => router.push("/sign-in")}>
-						<Text style={styles.linkText}>Go to Sign In</Text>
+						<Text style={ss.linkText}>Go to Sign In</Text>
 					</Pressable>
 				</View>
 			) : (
 				<>
-					<Text style={styles.label}>Email</Text>
-					<View style={styles.inputContainer}>
-						<Icon
-							name="envelope"
-							size={20}
-							color="#888"
-							style={styles.inputIcon}
-						/>
+					<Text style={ss.label}>Email</Text>
+					<View style={ss.inputContainer}>
+						<Icon name="envelope" size={20} color="#888" style={ss.inputIcon} />
 						<TextInput
-							style={styles.input}
+							style={ss.input}
 							onChangeText={(text) => setEmail(text)}
 							value={email}
 							placeholder="email@address.com"
@@ -67,11 +63,11 @@ export default function SignUp() {
 							keyboardType="email-address"
 						/>
 					</View>
-					<Text style={styles.label}>Password</Text>
-					<View style={styles.inputContainer}>
-						<Icon name="lock" size={20} color="#888" style={styles.inputIcon} />
+					<Text style={ss.label}>Password</Text>
+					<View style={ss.inputContainer}>
+						<Icon name="lock" size={20} color="#888" style={ss.inputIcon} />
 						<TextInput
-							style={styles.input}
+							style={ss.input}
 							onChangeText={(text) => setPassword(text)}
 							value={password}
 							secureTextEntry
@@ -80,65 +76,14 @@ export default function SignUp() {
 						/>
 					</View>
 					<Pressable
-						style={[styles.button, loading && styles.buttonDisabled]}
+						style={[ss.button, loading && ss.buttonDisabled]}
 						disabled={loading}
 						onPress={signUpWithEmail}
 					>
-						<Text style={styles.buttonText}>Sign up</Text>
+						<Text style={ss.buttonText}>Sign up</Text>
 					</Pressable>
 				</>
 			)}
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		marginTop: 40,
-		padding: 12,
-	},
-	label: {
-		fontSize: 16,
-		color: "#333",
-		marginBottom: 5,
-	},
-	inputContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		borderWidth: 1,
-		borderColor: "#ccc",
-		borderRadius: 5,
-		padding: 10,
-		marginBottom: 20,
-	},
-	inputIcon: {
-		marginRight: 10,
-	},
-	input: {
-		flex: 1,
-		fontSize: 16,
-	},
-	button: {
-		backgroundColor: "blue",
-		padding: 15,
-		borderRadius: 5,
-		alignItems: "center",
-		marginBottom: 10,
-	},
-	buttonDisabled: {
-		backgroundColor: "#d3d3d3",
-	},
-	buttonText: {
-		color: "#fff",
-		fontSize: 16,
-		fontWeight: "bold",
-	},
-	successText: {
-		textAlign: "center",
-		marginBottom: 10,
-	},
-	linkText: {
-		color: "blue",
-		textDecorationLine: "underline",
-	},
-});
