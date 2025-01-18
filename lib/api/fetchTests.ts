@@ -1,4 +1,4 @@
-export interface TestData {
+export interface Tests {
 	_id: string;
 	provider: string;
 	level: string;
@@ -6,7 +6,7 @@ export interface TestData {
 	description: string;
 }
 
-export const fetchTests = async (): Promise<TestData> => {
+export const fetchTests = async (): Promise<Tests> => {
 	const baseUrl = "https://exam-fusion-api.vercel.app";
 	const url = `${baseUrl}/api/v1/tests/all`;
 	const response = await fetch(url);
