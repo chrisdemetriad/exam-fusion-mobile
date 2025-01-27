@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-	View,
-	Text,
-	TextInput,
-	StyleSheet,
-	Pressable,
-	Alert,
-} from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useRouter } from "expo-router";
 import { supabase } from "@lib/supabase";

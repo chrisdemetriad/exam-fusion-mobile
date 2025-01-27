@@ -4,7 +4,6 @@ import {
 	Text,
 	TouchableOpacity,
 	ActivityIndicator,
-	StyleSheet,
 	FlatList,
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
